@@ -85,9 +85,10 @@ class CategoryProduitController extends AbstractController
     #delete category #
     /**
      * @Route("/category/Delete/{id}", name="category_delete")
-     * Method({"DELETE"})
+     * Method({"Post"})
+     * 
      */
-    public function Delete(Request $request, $id)
+    public function Delete( $id)
     {
 
         $category = $this->getDoctrine()

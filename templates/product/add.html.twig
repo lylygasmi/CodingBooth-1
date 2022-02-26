@@ -11,7 +11,9 @@
 {{form_widget(form)}}
 </div>
 {{form_end(form)}}
-</div>
-<a href="{{ path('adproduct') }}">back to list</a>
 
+<center>
+<a href="{{ path('adproduct') }}"><button type="button" class="btn btn-outline-danger">
+			<font size="3pt">{% trans %}back to list{% endtrans %}</font></a>
+</Center>
 {% endblock %}

@@ -29,7 +29,11 @@
 
 <center>
 <h1>OUR PRODUCTS: </h1>
-<button class="button" ><a href="{{ path('new')  }}"> Add</a></button>
+<a href="{{ path('new')  }}"><button type="button" class="btn btn-outline-danger">
+			<font size="3pt">{% trans %}ADD{% endtrans %}</font>
+		</button>
+	</a>
+	
 <table class="table" >
 <thead>
   <tr >

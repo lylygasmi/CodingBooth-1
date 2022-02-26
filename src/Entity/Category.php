@@ -6,6 +6,8 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
@@ -21,14 +23,20 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255)
+     * * @Assert\Length(
+     *      min = 4,
+     *      max = 50,
+     *      minMessage = "least {{ limit }} characters long",
+     *      maxMessage = "cannot be longer than {{ limit }} characters"
+     * )
      */
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity=Produit::class, cascade={"persist", "remove"}, mappedBy="Category")
+     * @ORM\OneToMany(targetEntity=Produit::class, cascade={"persist", "remove"}, mappedBy="categoryprod", orphanRemoval=true)
      */
     private $produits;
-
+  
     public function __construct()
     {
         $this->produits = new ArrayCollection();

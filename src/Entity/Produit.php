@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Produit
@@ -23,14 +25,24 @@ class Produit
 
     /**
      * @var string
-     *
+     * * @Assert\Length(
+     *      min = 4,
+     *      max = 50,
+     *      minMessage = "least {{ limit }} characters long",
+     *      maxMessage = "cannot be longer than {{ limit }} characters"
+     * )
      * @ORM\Column(name="nonprod", type="string", length=255, nullable=false)
      */
     private $nomprod;
 
     /**
      * @var string
-     *
+     * * @Assert\Length(
+     *      min = 4,
+     *      
+     *      minMessage = "at least {{ limit }} characters long",
+     *      
+     *      * )
      * @ORM\Column(name="description", type="string", length=255, nullable=false)
      */
     private $description;
@@ -46,11 +58,14 @@ class Produit
      * @var float
      *
      * @ORM\Column(name="prix", type="float", precision=10, scale=0, nullable=false)
+     *     
+     * @Assert\Positive
      */
     private $prix;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotNull(message="La quantité doît être différent de 0")
      */
     private $quantity;
 

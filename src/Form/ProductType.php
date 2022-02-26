@@ -13,13 +13,21 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('nomprod',TextType::class) 
+        ->add('nomprod',TextType::class, [
+            'constraints' => [
+                     new Length([
+                    'min' => 4,
+                    'minMessage' => 'Votre nom produit doit contenir au moins {{ limit }} caractères.',
+                ]),
+                            ],
+               ]) 
         ->add('description',TextType::class)
         ->add('prix',MoneyType::class)
         ->add('quantity',IntegerType::class)
